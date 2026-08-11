@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Project Youth in Motion</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Inter:wght@400;500;600&display=swap"
+    rel="stylesheet"
+>
+
+<style>
+/* =====================================================
+   PASSWORD SCREEN
+===================================================== */
+
+#passwordScreen {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg);
+    text-align: center;
+}
+
+.password-box {
+    width: min(420px, 88%);
+}
+
+.password-box h1 {
+    font-family: "Libre Baskerville", serif;
+    font-size: clamp(2.2rem, 6vw, 3.5rem);
+    line-height: 1.1;
+    margin-bottom: 15px;
+}
+
+.password-box p {
+    color: var(--muted);
+    margin-bottom: 25px;
+}
+
+.password-input {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1px solid var(--line);
+    background: rgba(255, 255, 255, 0.5);
+    font-family: "Inter", sans-serif;
+    font-size: 16px;
+    outline: none;
+    margin-bottom: 12px;
+}
+
+.password-input:focus {
+    border-color: var(--text);
+}
+
+.password-button {
+    width: 100%;
+    padding: 14px 20px;
+    border: 1px solid var(--text);
+    background: var(--text);
+    color: white;
+    font-family: "Inter", sans-serif;
+    font-size: 15px;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+}
+
+.password-button:hover {
+    opacity: 0.75;
+}
+
+.password-error {
+    display: none;
+    color: #9b3d3d !important;
+    margin-top: 12px;
+    margin-bottom: 0 !important;
+}
+    
+    
+:root {
+    --bg: #e9f0d5;
+    --text: #111622;
+    --muted: #4e5a70;
+    --line: #d7d9c7;
+    --card: rgba(255, 255, 255, 0.28);
+}
+
+/* =====================================================
+   RESET
+===================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: auto;
+    overflow-x: hidden;
+}
+
+body {
+    font-family: "Inter", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    overflow-x: hidden;
+}
+
+img {
+    display: block;
+    width: 100%;
+}
+
+.container {
+    width: min(1200px, 92%);
+    margin: auto;
+}
+
+/* =====================================================
+   OPENING
+===================================================== */
+
+.opening {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    height: 100svh;
+    overflow: hidden;
+}
+
+.hero {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    background: var(--bg);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+}
+
+.hero h1 {
+    font-family: "Libre Baskerville", serif;
+    font-size: clamp(4rem, 9vw, 7rem);
+    line-height: 0.95;
+    margin-bottom: 24px;
+}
+
+.hero p {
+    max-width: 500px;
+    color: var(--muted);
+    font-size: 1.05rem;
+}
+
+.hero-image {
+    overflow: hidden;
+}
+
+.hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.cover {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    opacity: 1;
+    pointer-events: none;
+    user-select: none;
+}
+
+.hero {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: auto;
+}
+
+.cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* =====================================================
+   GENERAL SECTIONS
+===================================================== */
+
+.full-section {
+    min-height: 100vh;
+    min-height: 100svh;
+}
+
+/* =====================================================
+   SOCIAL FEED
+===================================================== */
+
+.social-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 0;
+}
+
+.social-section iframe {
+    display: block;
+    width: min(1000px, 92vw);
+    height: min(900px, 88vh);
+    border: 0;
+}
+
+/* =====================================================
+   MISSION
+===================================================== */
+
+.quote {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 20px;
+    text-align: center;
+}
+
+.quote p {
+    font-family: "Libre Baskerville", serif;
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    max-width: 900px;
+    margin: auto;
+    line-height: 1.35;
+}
+
+.quote b {
+    display: block;
+    margin-bottom: 22px;
+}
+
+/* =====================================================
+   FUTURE EVENTS
+===================================================== */
+
+.events-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 80px 20px;
+}
+
+.events-content {
+    width: min(850px, 92%);
+}
+
+.section-eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    font-size: 0.72rem;
+    color: var(--muted);
+    margin-bottom: 18px;
+}
+
+.events-content h2 {
+    font-family: "Libre Baskerville", serif;
+    font-size: clamp(2.7rem, 6vw, 5rem);
+    line-height: 1;
+    margin-bottom: 28px;
+}
+
+.events-content p {
+    color: var(--muted);
+    font-size: 1.05rem;
+}
+
+.no-events {
+    margin-top: 45px;
+    padding: 30px 40px;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    font-family: "Libre Baskerville", serif;
+    font-size: clamp(1.4rem, 3vw, 2rem);
+}
+
+/* =====================================================
+   APPLICATIONS
+===================================================== */
+
+.applications-section {
+    min-height: 100vh;
+    min-height: 100svh;
+    display: flex;
+    align-items: center;
+    padding: 90px 0;
+}
+
+.applications-header {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 40px;
+    margin-bottom: 55px;
+}
+
+.applications-header h2 {
+    font-family: "Libre Baskerville", serif;
+    font-size: clamp(2.7rem, 5vw, 4.5rem);
+    line-height: 1;
+}
+
+.applications-header p {
+    max-width: 340px;
+    color: var(--muted);
+}
+
+.application-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+}
+
+.application-card {
+    min-height: 310px;
+    border: 1px solid var(--line);
+    background: var(--card);
+    padding: 34px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-decoration: none;
+    color: var(--text);
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.application-card:hover {
+    transform: translateY(-7px);
+    background: rgba(255, 255, 255, 0.48);
+    border-color: rgba(17, 22, 34, 0.25);
+}
+
+.application-number {
+    font-size: 0.78rem;
+    color: var(--muted);
+    letter-spacing: 0.12em;
+}
+
+.application-card h3 {
+    font-family: "Libre Baskerville", serif;
+    font-size: clamp(1.65rem, 3vw, 2.25rem);
+    line-height: 1.1;
+    margin-bottom: 14px;
+}
+
+.application-card p {
+    color: var(--muted);
+    font-size: 0.95rem;
+    max-width: 300px;
+}
+
+.application-arrow {
+    font-size: 1.4rem;
+    align-self: flex-end;
+    transition: transform 0.2s ease;
+}
+
+.application-card:hover .application-arrow {
+    transform: translateX(7px);
+}
+
+.about-link {
+    display: inline-block;
+    margin-top: 24px;
+    color: var(--text);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 600;
+    border-bottom: 1px solid var(--text);
+    padding-bottom: 4px;
+    transition: opacity 0.2s ease;
+}
+
+.about-link:hover {
+    opacity: 0.55;
+}
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+footer {
+    min-height: 35vh;
+    border-top: 1px solid var(--line);
+    padding: 60px 20px;
+    color: var(--muted);
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer-socials {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 24px;
+    margin-bottom: 18px;
+}
+
+.footer-socials a {
+    color: inherit;
+    text-decoration: none;
+    font-weight: 600;
+    transition: opacity 0.15s ease;
+}
+
+.footer-socials a:hover {
+    opacity: 0.55;
+}
+
+.footer-copyright {
+    font-size: 14px;
+    opacity: 0.65;
+}
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 900px) {
+
+    .hero {
+        text-align: center;
+        padding: 40px 0;
+    }
+
+    .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .hero-grid > div:first-child {
+        order: 2;
+    }
+
+    .hero-image {
+        order: 1;
+        width: clamp(140px, 45vw, 220px);
+        aspect-ratio: 1;
+        border-radius: 50%;
+        margin: 0 auto;
+    }
+
+    .hero p {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .social-section iframe {
+        width: 94vw;
+        height: 85svh;
+    }
+
+    .quote p {
+        font-size: clamp(1.65rem, 7vw, 2.2rem);
+    }
+
+    .applications-section {
+        padding: 70px 0;
+    }
+
+    .applications-header {
+        display: block;
+        margin-bottom: 35px;
+    }
+
+    .applications-header p {
+        margin-top: 22px;
+    }
+
+    .application-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .application-card {
+        min-height: 230px;
+    }
+
+    .events-content h2 {
+        font-size: clamp(2.5rem, 11vw, 4rem);
+    }
+}
+
+</style>
+
+</head>
+
+<body>
+<!-- =====================================================
+     PASSWORD SCREEN
+===================================================== -->
+
+<div id="passwordScreen">
+
+    <div class="password-box">
+
+        <h1>Project Youth in Motion</h1>
+
+        <p>
+            Please enter the password to continue.
+        </p>
+
+        <input
+            type="password"
+            id="passwordInput"
+            class="password-input"
+            placeholder="Password"
+            autocomplete="off"
+        >
+
+        <button
+            class="password-button"
+            onclick="checkPassword()"
+        >
+            Enter
+        </button>
+
+        <p id="passwordError" class="password-error">
+            Incorrect password.
+        </p>
+
+    </div>
+
+</div>
+<!-- =====================================================
+     OPENING
+===================================================== -->
+
+<section class="opening" id="opening">
+
+
+<div class="hero" id="hero">
+
+    <div class="container">
+
+        <div class="hero-grid">
+
+            <div>
+
+                <h1>
+                    Project Youth in <i>Motion</i>
+                </h1>
+
+                <p>
+                PYIM is a fiscally sponsored 501(c)(3) under The Hack Foundation that works to empower underserved communities through health education and sports equipment. The idea was thought of by a high school freshman, who hopes to make a difference in children's lives.
+                </p>
+                <a href="./about.html" class="about-link">
+                    About Project Youth in Motion -->
+                </a>
+
+            </div>
+            <div class="hero-image">
+
+                <img
+                    src="images/logo.png"
+                    alt="Project Youth in Motion Logo"
+                >
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="cover" id="cover">
+
+    <img
+        src="images/titleIMG.png"
+        alt="Project Youth in Motion"
+    >
+
+</div>
+
+
+</section>
+
+<!-- =====================================================
+     SOCIAL FEED
+===================================================== -->
+
+<section
+    id="social"
+    class="social-section full-section"
+>
+
+
+<iframe
+    src="https://www.juicer.io/api/feeds/youthinmotion1/iframe"
+    frameborder="0"
+    title="Youth in Motion social media feed"
+    loading="lazy"
+></iframe>
+
+
+</section>
+
+<!-- =====================================================
+     MISSION
+===================================================== -->
+
+<section
+    id="quote"
+    class="quote full-section"
+>
+
+
+<div class="container">
+
+    <p>
+
+        <b>Our Mission</b>
+
+        At Project Youth In Motion, we believe every child
+        deserves the opportunity to live a healthy, active life.
+        Through health literacy, healthcare education, and sports
+        equity initiatives, we work to empower underserved youth -
+        especially those in immigrant and low-income communities -
+        with the knowledge, resources, and confidence to thrive.
+        Together, we’re breaking barriers to healthcare and sports
+        participation, one child at a time.
+
+    </p>
+
+</div>
+
+
+</section>
+
+<!-- =====================================================
+     FUTURE EVENTS
+=====================================================
+
+<section
+    id="events"
+    class="events-section full-section"
+>
+
+
+<div class="events-content">
+
+    <div class="section-eyebrow">
+        What's Ahead
+    </div>
+
+    <h2>
+        Future Events
+    </h2>
+
+    <p>
+        Stay tuned for upcoming Project Youth in Motion
+        events, programs, and opportunities to get involved.
+    </p>
+
+    <div class="no-events">
+        No upcoming events.
+    </div>
+
+</div>
+
+
+<!--</section>
+
+<!-- =====================================================
+     APPLICATIONS
+===================================================== -->
+
+<section
+    id="applications"
+    class="applications-section"
+>
+
+
+<div class="container">
+
+    <div class="applications-header">
+
+        <div>
+
+
+
+            <h2>
+Get Involved            </h2>
+
+        </div>
+
+        <p>
+            There are many ways to become part of
+            Project Youth in Motion. Join us!
+        </p>
+
+    </div>
+
+
+    <div class="application-grid">
+
+        <!-- VOLUNTEER -->
+
+        <a
+            href="https://docs.google.com/forms/d/e/1FAIpQLSdQCUxAFMl9M_zvScGO81KAhV4r_JVBMOTPBI-JDYD5FhfmPg/viewform"
+            class="application-card"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+
+            <div>
+
+            </div>
+
+            <div>
+
+                <h3>
+                    Volunteer
+                </h3>
+
+                <p>
+Coming soon on the website. Excited to learn more soon? Email info@PYIM.org for more information about current oppurtunities.
+                </p>
+
+            </div>
+
+            <div class="application-arrow">
+                →
+            </div>
+
+        </a>
+
+
+        <!-- CHAPTER -->
+
+        <a
+            href="https://docs.google.com/forms/d/e/1FAIpQLSdQCUxAFMl9M_zvScGO81KAhV4r_JVBMOTPBI-JDYD5FhfmPg/viewform"
+            class="application-card"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+
+            <div>
+
+            </div>
+
+            <div>
+
+                <h3>
+                    Start a Chapter
+                </h3>
+
+                <p>
+                    Bring Project Youth in Motion
+                    to your school and build a
+                    community around health and equity.
+                </p>
+
+            </div>
+
+            <div class="application-arrow">
+                →
+            </div>
+
+        </a>
+
+
+        <!-- EXECUTIVE BOARD -->
+
+        <a
+            href="https://docs.google.com/forms/d/e/1FAIpQLSfI8BsnhHeyDxVivvOTEP5Qn78rkO2kIS5xns9u4tYaDWVhEQ/viewform"
+            class="application-card"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+
+            <div>
+
+            </div>
+
+            <div>
+
+                <h3>
+                    Executive Board
+                </h3>
+
+                <p>
+                    Take on a leadership role and
+                    help shape the future of Project
+                    Youth in Motion.
+                </p>
+
+            </div>
+
+            <div class="application-arrow">
+                →
+            </div>
+
+        </a>
+
+    </div>
+
+</div>
+
+
+</section>
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+
+<div class="container">
+
+    <div class="footer-socials">
+
+        <a
+            href="https://www.instagram.com/youthinmotion1/"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+            Instagram
+        </a>
+
+        <a
+            href="https://linktr.ee/youthinmotion8"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+            Linktree
+        </a>
+
+    </div>
+
+    <div class="footer-copyright">
+        © 2026 Project Youth in Motion
+    </div>
+
+</div>
+
+
+</footer>
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script>
+/* =====================================================
+   PASSWORD PROTECTION
+===================================================== */
+
+const passwordScreen = document.getElementById("passwordScreen");
+const passwordInput = document.getElementById("passwordInput");
+const passwordError = document.getElementById("passwordError");
+
+function checkPassword() {
+
+    if (passwordInput.value === "sarika") {
+
+        passwordScreen.style.display = "none";
+
+    } else {
+
+        passwordError.style.display = "block";
+        passwordInput.value = "";
+        passwordInput.focus();
+
+    }
+}
+
+passwordInput.addEventListener("keydown", function(event) {
+
+    if (event.key === "Enter") {
+        checkPassword();
+    }
+
+});
+
+/* =====================================================
+   OPENING TRANSITION
+
+   The first screen is controlled separately from
+   normal page scrolling.
+
+   The user must continue scrolling before the
+   title/hero appears.
+
+   Scrolling back upward reverses the transition.
+===================================================== */
+
+const cover = document.getElementById("cover");
+const hero = document.getElementById("hero");
+
+const OPENING_SCROLL_DISTANCE = 3000;
+
+let openingProgress = 0;
+let openingComplete = false;
+
+
+/* =====================================================
+   RENDER OPENING
+===================================================== */
+
+function renderOpening() {
+
+    let progress =
+        openingProgress / OPENING_SCROLL_DISTANCE;
+
+    progress = Math.max(
+        0,
+        Math.min(1, progress)
+    );
+
+    cover.style.opacity = 1 - progress;
+    hero.style.opacity = progress;
+
+    openingComplete = progress >= 1;
+}
+
+renderOpening();
+
+
+/* =====================================================
+   MOUSE / TRACKPAD
+
+   ONLY the opening transition is intercepted.
+
+   Once the opening transition is complete,
+   normal browser scrolling takes over.
+===================================================== */
+
+window.addEventListener(
+    "wheel",
+    function(event) {
+
+        /*
+         * Moving downward from the very top:
+         * consume the scroll and fade the cover out.
+         */
+
+        if (
+            window.scrollY <= 2 &&
+            !openingComplete &&
+            event.deltaY > 0
+        ) {
+
+            event.preventDefault();
+
+            openingProgress += event.deltaY;
+
+            openingProgress = Math.max(
+                0,
+                Math.min(
+                    OPENING_SCROLL_DISTANCE,
+                    openingProgress
+                )
+            );
+
+            renderOpening();
+
+            return;
+        }
+
+
+        /*
+         * Moving upward at the top:
+         * fade the cover back in.
+         */
+
+        if (
+            window.scrollY <= 2 &&
+            event.deltaY < 0
+        ) {
+
+            event.preventDefault();
+
+            openingProgress += event.deltaY;
+
+            openingProgress = Math.max(
+                0,
+                openingProgress
+            );
+
+            renderOpening();
+
+            return;
+        }
+
+        /*
+         * Everything else is completely normal
+         * browser scrolling.
+         */
+
+    },
+    {
+        passive: false
+    }
+);
+
+
+/* =====================================================
+   MOBILE TOUCH
+
+   The opening transition still behaves like a
+   scroll-controlled animation.
+
+   Once the opening is finished, normal touch
+   scrolling takes over.
+===================================================== */
+
+let touchStartY = null;
+
+window.addEventListener(
+    "touchstart",
+    function(event) {
+
+        if (event.touches.length !== 1) {
+            return;
+        }
+
+        touchStartY =
+            event.touches[0].clientY;
+
+    },
+    {
+        passive: true
+    }
+);
+
+
+window.addEventListener(
+    "touchmove",
+    function(event) {
+
+        if (touchStartY === null) {
+            return;
+        }
+
+        const currentY =
+            event.touches[0].clientY;
+
+        const difference =
+            touchStartY - currentY;
+
+
+        /*
+         * Only intercept touch scrolling while
+         * the opening transition is active or
+         * while reversing it at the very top.
+         */
+
+        if (
+            window.scrollY <= 2 &&
+            (
+                !openingComplete ||
+                difference < 0
+            )
+        ) {
+
+            event.preventDefault();
+
+            openingProgress +=
+                difference * 1.5;
+
+            openingProgress = Math.max(
+                0,
+                Math.min(
+                    OPENING_SCROLL_DISTANCE,
+                    openingProgress
+                )
+            );
+
+            touchStartY = currentY;
+
+            renderOpening();
+
+            return;
+        }
+
+        /*
+         * Once the opening is complete, do not
+         * preventDefault().
+         *
+         * The phone/browser therefore scrolls
+         * completely normally.
+         */
+
+    },
+    {
+        passive: false
+    }
+);
+
+
+window.addEventListener(
+    "touchend",
+    function() {
+
+        touchStartY = null;
+
+    },
+    {
+        passive: true
+    }
+);
+
+</script>
+
+</body>
+
+</html>
