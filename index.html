@@ -132,83 +132,103 @@ img {
    OPENING
 ===================================================== */
 
-.opening {
-    position: relative;
-    width: 100%;
-    height: 100vh;
-    height: 100svh;
-    overflow: hidden;
-}
+ .opening {
+     position: relative;
+     width: 100%;
+     min-height: 100vh;
+     min-height: 100svh;
+     background: var(--bg);
+ }
 
-.hero {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-    display: flex;
-    align-items: center;
-    background: var(--bg);
-    opacity: 0;
-    pointer-events: none;
-}
+ .hero {
+     position: relative;
+     width: 100%;
+     min-height: 100vh;
+     min-height: 100svh;
+     display: flex;
+     align-items: center;
+     background: var(--bg);
+     padding: 90px 0;
+ }
 
-.hero-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
-    align-items: center;
-}
+ .hero-grid {
+     display: grid;
+     grid-template-columns: 1fr 1fr;
+     gap: 80px;
+     align-items: center;
+ }
 
-.hero h1 {
-    font-family: "Libre Baskerville", serif;
-    font-size: clamp(4rem, 9vw, 7rem);
-    line-height: 0.95;
-    margin-bottom: 24px;
-}
+ .hero h1 {
+     font-family: "Libre Baskerville", serif;
+     font-size: clamp(4rem, 9vw, 7rem);
+     line-height: 0.95;
+     margin-bottom: 24px;
+ }
 
-.hero p {
-    max-width: 500px;
-    color: var(--muted);
-    font-size: 1.05rem;
-}
+ .hero p {
+     max-width: 500px;
+     color: var(--muted);
+     font-size: 1.05rem;
+ }
 
-.hero-image {
-    overflow: hidden;
-}
+ .hero-image {
+     overflow: hidden;
+ }
 
-.hero-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
+ .hero-image img {
+     width: 100%;
+     height: 100%;
+     object-fit: cover;
+ }
 
-.cover {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 2;
-    opacity: 1;
-    pointer-events: none;
-    user-select: none;
-}
+ .cover {
+     position: absolute;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: calc(100vh - 76px);
+     height: calc(100svh - 76px);
+     z-index: 2;
+     pointer-events: none;
+     user-select: none;
+ }
 
-.hero {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-    pointer-events: auto;
-}
+ .cover img {
+     width: 100%;
+     height: 100%;
+     object-fit: cover;
+     object-position: center;
+ }
 
-.cover img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-}
+ .scroll-indicator {
+     position: absolute;
+     left: 0;
+     bottom: 0;
+     width: 100%;
+     height: 76px;
+     z-index: 3;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     background: var(--bg);
+     color: var(--text);
+     pointer-events: none;
+ }
+
+ .scroll-arrow {
+     font-size: 2rem;
+     line-height: 1;
+     animation: scrollBounce 1.4s ease-in-out infinite;
+ }
+
+ @keyframes scrollBounce {
+     0%, 100% { transform: translateY(0); }
+     50% { transform: translateY(10px); }
+ }
+
+ @media (prefers-reduced-motion: reduce) {
+     .scroll-arrow { animation: none; }
+ }
 
 /* =====================================================
    GENERAL SECTIONS
@@ -458,18 +478,17 @@ footer {
 
 @media (max-width: 900px) {
     /* Skip the opening title image on phones */
-    .cover {
-        display: none;
-    }
+     .cover,
+     .scroll-indicator {
+         display: none;
+     }
 
-    .hero {
-        opacity: 1;
-        pointer-events: auto;
-    }
-    .hero {
-        text-align: center;
-        padding: 40px 0;
-    }
+     .hero {
+         text-align: center;
+         min-height: 100vh;
+         min-height: 100svh;
+         padding: 40px 0;
+     }
 
     .hero-grid {
         grid-template-columns: 1fr;
@@ -619,6 +638,10 @@ footer {
         alt="Project Youth in Motion"
     >
 
+</div>
+
+<div class="scroll-indicator" aria-hidden="true">
+    <div class="scroll-arrow">↓</div>
 </div>
 
 
@@ -924,238 +947,19 @@ passwordInput.addEventListener("keydown", function(event) {
 });
 
 /* =====================================================
-   OPENING TRANSITION
+   OPENING TITLE IMAGE
 
-   The first screen is controlled separately from
-   normal page scrolling.
+   On desktop the image is a simple visual opening.
+   There is no fade or scroll interception: normal browser
+   scrolling reveals the title text below it.
 
-   The user must continue scrolling before the
-   title/hero appears.
-
-   Scrolling back upward reverses the transition.
+   On phones the title image is skipped entirely.
 ===================================================== */
-
-const cover = document.getElementById("cover");
-const hero = document.getElementById("hero");
-
-const OPENING_SCROLL_DISTANCE = 3000;
-
-let openingProgress = 0;
-let openingComplete = false;
 
 if (window.matchMedia("(max-width: 900px)").matches) {
-    openingProgress = OPENING_SCROLL_DISTANCE;
-    openingComplete = true;
+    document.getElementById("cover").style.display = "none";
+    document.querySelector(".scroll-indicator").style.display = "none";
 }
-
-
-/* =====================================================
-   RENDER OPENING
-===================================================== */
-
-function renderOpening() {
-
-    let progress =
-        openingProgress / OPENING_SCROLL_DISTANCE;
-
-    progress = Math.max(
-        0,
-        Math.min(1, progress)
-    );
-
-    cover.style.opacity = 1 - progress;
-    hero.style.opacity = progress;
-
-    openingComplete = progress >= 1;
-}
-
-renderOpening();
-
-
-/* =====================================================
-   MOUSE / TRACKPAD
-
-   ONLY the opening transition is intercepted.
-
-   Once the opening transition is complete,
-   normal browser scrolling takes over.
-===================================================== */
-
-window.addEventListener(
-    "wheel",
-    function(event) {
-
-        /*
-         * Moving downward from the very top:
-         * consume the scroll and fade the cover out.
-         */
-
-        if (
-            window.scrollY <= 2 &&
-            !openingComplete &&
-            event.deltaY > 0
-        ) {
-
-            event.preventDefault();
-
-            openingProgress += event.deltaY;
-
-            openingProgress = Math.max(
-                0,
-                Math.min(
-                    OPENING_SCROLL_DISTANCE,
-                    openingProgress
-                )
-            );
-
-            renderOpening();
-
-            return;
-        }
-
-
-        /*
-         * Moving upward at the top:
-         * fade the cover back in.
-         */
-
-        if (
-            window.scrollY <= 2 &&
-            event.deltaY < 0
-        ) {
-
-            event.preventDefault();
-
-            openingProgress += event.deltaY;
-
-            openingProgress = Math.max(
-                0,
-                openingProgress
-            );
-
-            renderOpening();
-
-            return;
-        }
-
-        /*
-         * Everything else is completely normal
-         * browser scrolling.
-         */
-
-    },
-    {
-        passive: false
-    }
-);
-
-
-/* =====================================================
-   MOBILE TOUCH
-
-   The opening transition still behaves like a
-   scroll-controlled animation.
-
-   Once the opening is finished, normal touch
-   scrolling takes over.
-===================================================== */
-
-let touchStartY = null;
-
-window.addEventListener(
-    "touchstart",
-    function(event) {
-
-        if (event.touches.length !== 1) {
-            return;
-        }
-
-        touchStartY =
-            event.touches[0].clientY;
-
-    },
-    {
-        passive: true
-    }
-);
-
-
-window.addEventListener(
-    "touchmove",
-    function(event) {
-
-        if (touchStartY === null) {
-            return;
-        }
-
-        const currentY =
-            event.touches[0].clientY;
-
-        const difference =
-            touchStartY - currentY;
-
-
-        /*
-         * Only intercept touch scrolling while
-         * the opening transition is active or
-         * while reversing it at the very top.
-         */
-
-        if (
-            window.scrollY <= 2 &&
-            (
-                !openingComplete ||
-                difference < 0
-            )
-        ) {
-
-            event.preventDefault();
-
-            openingProgress +=
-                difference * 1.5;
-
-            openingProgress = Math.max(
-                0,
-                Math.min(
-                    OPENING_SCROLL_DISTANCE,
-                    openingProgress
-                )
-            );
-
-            touchStartY = currentY;
-
-            renderOpening();
-
-            return;
-        }
-
-        /*
-         * Once the opening is complete, do not
-         * preventDefault().
-         *
-         * The phone/browser therefore scrolls
-         * completely normally.
-         */
-
-    },
-    {
-        passive: false
-    }
-);
-
-
-window.addEventListener(
-    "touchend",
-    function() {
-
-        touchStartY = null;
-
-    },
-    {
-        passive: true
-    }
-);
-
 </script>
 
 </body>
