@@ -133,88 +133,119 @@ img {
 ===================================================== */
 
  .opening {
-     position: relative;
-     width: 100%;
-     min-height: 100vh;
-     min-height: 100svh;
-     background: var(--bg);
- }
+    position: relative;
+    width: 100%;
+    background: var(--bg);
+}
 
- .hero {
-     position: relative;
-     width: 100%;
-     min-height: 100vh;
-     min-height: 100svh;
-     display: flex;
-     align-items: center;
-     background: var(--bg);
-     padding: 90px 0;
- }
+/* =========================
+   TITLE IMAGE
+   ========================= */
 
- .hero-grid {
-     display: grid;
-     grid-template-columns: 1fr 1fr;
-     gap: 80px;
-     align-items: center;
- }
+.cover {
+    position: relative;
+    width: 100%;
+    height: calc(100vh - 76px);
+    height: calc(100svh - 76px);
+    z-index: 2;
+    pointer-events: none;
+    user-select: none;
+}
 
- .hero h1 {
-     font-family: "Libre Baskerville", serif;
-     font-size: clamp(4rem, 9vw, 7rem);
-     line-height: 0.95;
-     margin-bottom: 24px;
- }
+.cover img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
 
- .hero p {
-     max-width: 500px;
-     color: var(--muted);
-     font-size: 1.05rem;
- }
+/* =========================
+   GREEN SCROLL STRIP
+   ========================= */
 
- .hero-image {
-     overflow: hidden;
- }
+.scroll-indicator {
+    position: absolute;
+    top: calc(100vh - 76px);
+    top: calc(100svh - 76px);
+    left: 0;
+    width: 100%;
+    height: 76px;
+    z-index: 3;
 
- .hero-image img {
-     width: 100%;
-     height: 100%;
-     object-fit: cover;
- }
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
- .cover {
-     position: absolute;
-     top: 0;
-     left: 0;
-     width: 100%;
-     height: calc(100vh - 76px);
-     height: calc(100svh - 76px);
-     z-index: 2;
-     pointer-events: none;
-     user-select: none;
- }
+    background: var(--bg);
+    color: var(--text);
 
- .cover img {
-     width: 100%;
-     height: 100%;
-     object-fit: cover;
-     object-position: center;
- }
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+}
 
- .scroll-indicator {
-     position: absolute;
-     left: 0;
-     bottom: 0;
-     width: 100%;
-     height: 76px;
-     z-index: 3;
-     display: flex;
-     align-items: center;
-     justify-content: center;
-     background: var(--bg);
-     color: var(--text);
-     pointer-events: none;
-     transition: opacity 0.18s ease;
- }
+.scroll-arrow {
+    font-size: 2rem;
+    line-height: 1;
+    animation: scrollBounce 1.4s ease-in-out infinite;
+}
+
+@keyframes scrollBounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(10px);
+    }
+}
+
+/* =========================
+   TITLE PAGE
+   ========================= */
+
+.hero {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    min-height: 100svh;
+
+    display: flex;
+    align-items: center;
+
+    background: var(--bg);
+    padding: 90px 0;
+}
+
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+}
+
+.hero h1 {
+    font-family: "Libre Baskerville", serif;
+    font-size: clamp(4rem, 9vw, 7rem);
+    line-height: 0.95;
+    margin-bottom: 24px;
+}
+
+.hero p {
+    max-width: 500px;
+    color: var(--muted);
+    font-size: 1.05rem;
+}
+
+.hero-image {
+    overflow: hidden;
+}
+
+.hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 
  .scroll-arrow {
      font-size: 2rem;
@@ -478,18 +509,18 @@ footer {
 ===================================================== */
 
 @media (max-width: 900px) {
-    /* Skip the opening title image on phones */
-     .cover,
-     .scroll-indicator {
-         display: none;
-     }
 
-     .hero {
-         text-align: center;
-         min-height: 100vh;
-         min-height: 100svh;
-         padding: 40px 0;
-     }
+    .cover,
+    .scroll-indicator {
+        display: none;
+    }
+
+    .hero {
+        min-height: 100vh;
+        min-height: 100svh;
+        text-align: center;
+        padding: 40px 0;
+    }
 
     .hero-grid {
         grid-template-columns: 1fr;
@@ -512,6 +543,7 @@ footer {
         margin-left: auto;
         margin-right: auto;
     }
+}
 
     .social-section iframe {
         width: 94vw;
@@ -963,9 +995,11 @@ passwordInput.addEventListener("keydown", function(event) {
 const scrollIndicator = document.querySelector(".scroll-indicator");
 
 function updateScrollIndicator() {
-    if (!scrollIndicator) return;
-
-    scrollIndicator.style.opacity = window.scrollY > 5 ? "0" : "1";
+    if (window.scrollY > 5) {
+        scrollIndicator.style.opacity = "0";
+    } else {
+        scrollIndicator.style.opacity = "1";
+    }
 }
 
 window.addEventListener("scroll", updateScrollIndicator, {
