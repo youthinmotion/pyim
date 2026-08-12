@@ -457,7 +457,15 @@ footer {
 ===================================================== */
 
 @media (max-width: 900px) {
+    /* Skip the opening title image on phones */
+    .cover {
+        display: none;
+    }
 
+    .hero {
+        opacity: 1;
+        pointer-events: auto;
+    }
     .hero {
         text-align: center;
         padding: 40px 0;
@@ -934,6 +942,11 @@ const OPENING_SCROLL_DISTANCE = 3000;
 
 let openingProgress = 0;
 let openingComplete = false;
+
+if (window.matchMedia("(max-width: 900px)").matches) {
+    openingProgress = OPENING_SCROLL_DISTANCE;
+    openingComplete = true;
+}
 
 
 /* =====================================================
