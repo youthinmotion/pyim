@@ -213,6 +213,7 @@ img {
      background: var(--bg);
      color: var(--text);
      pointer-events: none;
+     transition: opacity 0.18s ease;
  }
 
  .scroll-arrow {
@@ -595,6 +596,18 @@ footer {
 
 <section class="opening" id="opening">
 
+<div class="cover" id="cover">
+
+    <img
+        src="images/titleIMG.png"
+        alt="Project Youth in Motion"
+    >
+
+</div>
+
+<div class="scroll-indicator" aria-hidden="true">
+    <div class="scroll-arrow">↓</div>
+</div>
 
 <div class="hero" id="hero">
 
@@ -631,18 +644,6 @@ footer {
 
 </div>
 
-<div class="cover" id="cover">
-
-    <img
-        src="images/titleIMG.png"
-        alt="Project Youth in Motion"
-    >
-
-</div>
-
-<div class="scroll-indicator" aria-hidden="true">
-    <div class="scroll-arrow">↓</div>
-</div>
 
 
 </section>
@@ -949,17 +950,35 @@ passwordInput.addEventListener("keydown", function(event) {
 /* =====================================================
    OPENING TITLE IMAGE
 
-   On desktop the image is a simple visual opening.
-   There is no fade or scroll interception: normal browser
-   scrolling reveals the title text below it.
+   Desktop:
+   The title image is the opening screen. The green strip
+   and bouncing arrow disappear once the visitor scrolls.
+   Normal scrolling then reveals the title page below,
+   including the logo, name, description, and About Us link.
 
-   On phones the title image is skipped entirely.
+   Mobile:
+   The title image and arrow are skipped entirely.
 ===================================================== */
+
+const scrollIndicator = document.querySelector(".scroll-indicator");
+
+function updateScrollIndicator() {
+    if (!scrollIndicator) return;
+
+    scrollIndicator.style.opacity = window.scrollY > 5 ? "0" : "1";
+}
+
+window.addEventListener("scroll", updateScrollIndicator, {
+    passive: true
+});
+
+updateScrollIndicator();
 
 if (window.matchMedia("(max-width: 900px)").matches) {
     document.getElementById("cover").style.display = "none";
-    document.querySelector(".scroll-indicator").style.display = "none";
+    scrollIndicator.style.display = "none";
 }
+
 </script>
 
 </body>
