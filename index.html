@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 
 <head>
@@ -17,76 +16,11 @@
 >
 
 <style>
-/* /* =====================================================
-   PASSWORD SCREEN
+
+/* =====================================================
+   ROOT
 ===================================================== */
 
-#passwordScreen {
-    position: fixed;
-    inset: 0;
-    z-index: 10000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--bg);
-    text-align: center;
-}
-
-.password-box {
-    width: min(420px, 88%);
-}
-
-.password-box h1 {
-    font-family: "Libre Baskerville", serif;
-    font-size: clamp(2.2rem, 6vw, 3.5rem);
-    line-height: 1.1;
-    margin-bottom: 15px;
-}
-
-.password-box p {
-    color: var(--muted);
-    margin-bottom: 25px;
-}
-
-.password-input {
-    width: 100%;
-    padding: 14px 16px;
-    border: 1px solid var(--line);
-    background: rgba(255, 255, 255, 0.5);
-    font-family: "Inter", sans-serif;
-    font-size: 16px;
-    outline: none;
-    margin-bottom: 12px;
-}
-
-.password-input:focus {
-    border-color: var(--text);
-}
-
-.password-button {
-    width: 100%;
-    padding: 14px 20px;
-    border: 1px solid var(--text);
-    background: var(--text);
-    color: white;
-    font-family: "Inter", sans-serif;
-    font-size: 15px;
-    cursor: pointer;
-    transition: opacity 0.2s ease;
-}
-
-.password-button:hover {
-    opacity: 0.75;
-}
-
-.password-error {
-    display: none;
-    color: #9b3d3d !important;
-    margin-top: 12px;
-    margin-bottom: 0 !important;
-}
-     */
-    
 :root {
     --bg: #e9f0d5;
     --text: #111622;
@@ -94,6 +28,7 @@
     --line: #d7d9c7;
     --card: rgba(255, 255, 255, 0.28);
 }
+
 
 /* =====================================================
    RESET
@@ -128,19 +63,21 @@ img {
     margin: auto;
 }
 
+
 /* =====================================================
    OPENING
 ===================================================== */
 
- .opening {
+.opening {
     position: relative;
     width: 100%;
     background: var(--bg);
 }
 
-/* =========================
+
+/* =====================================================
    TITLE IMAGE
-   ========================= */
+===================================================== */
 
 .cover {
     position: relative;
@@ -160,9 +97,10 @@ img {
     object-position: center;
 }
 
-/* =========================
+
+/* =====================================================
    GREEN SCROLL STRIP
-   ========================= */
+===================================================== */
 
 .scroll-indicator {
     position: absolute;
@@ -200,9 +138,10 @@ img {
     }
 }
 
-/* =========================
+
+/* =====================================================
    TITLE PAGE
-   ========================= */
+===================================================== */
 
 .hero {
     position: relative;
@@ -247,20 +186,17 @@ img {
     object-fit: cover;
 }
 
- .scroll-arrow {
-     font-size: 2rem;
-     line-height: 1;
-     animation: scrollBounce 1.4s ease-in-out infinite;
- }
 
- @keyframes scrollBounce {
-     0%, 100% { transform: translateY(0); }
-     50% { transform: translateY(10px); }
- }
+/* =====================================================
+   REDUCED MOTION
+===================================================== */
 
- @media (prefers-reduced-motion: reduce) {
-     .scroll-arrow { animation: none; }
- }
+@media (prefers-reduced-motion: reduce) {
+    .scroll-arrow {
+        animation: none;
+    }
+}
+
 
 /* =====================================================
    GENERAL SECTIONS
@@ -270,6 +206,7 @@ img {
     min-height: 100vh;
     min-height: 100svh;
 }
+
 
 /* =====================================================
    SOCIAL FEED
@@ -288,6 +225,7 @@ img {
     height: min(900px, 88vh);
     border: 0;
 }
+
 
 /* =====================================================
    MISSION
@@ -313,6 +251,7 @@ img {
     display: block;
     margin-bottom: 22px;
 }
+
 
 /* =====================================================
    FUTURE EVENTS
@@ -359,8 +298,9 @@ img {
     font-size: clamp(1.4rem, 3vw, 2rem);
 }
 
+
 /* =====================================================
-   APPLICATIONS
+   GET INVOLVED / APPLICATIONS
 ===================================================== */
 
 .applications-section {
@@ -390,20 +330,35 @@ img {
     color: var(--muted);
 }
 
+
+/* =====================================================
+   APPLICATION CARDS
+===================================================== */
+
 .application-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+
+    /* Three cards in one row */
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+
     gap: 18px;
+    width: 100%;
 }
 
 .application-card {
     min-height: 310px;
+
+    /* The boxes */
     border: 1px solid var(--line);
+
     background: var(--card);
+
     padding: 34px;
+
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+
     text-decoration: none;
     color: var(--text);
 
@@ -448,6 +403,11 @@ img {
     transform: translateX(7px);
 }
 
+
+/* =====================================================
+   ABOUT LINK
+===================================================== */
+
 .about-link {
     display: inline-block;
     margin-top: 24px;
@@ -464,6 +424,7 @@ img {
     opacity: 0.55;
 }
 
+
 /* =====================================================
    FOOTER
 ===================================================== */
@@ -474,6 +435,7 @@ footer {
     padding: 60px 20px;
     color: var(--muted);
     text-align: center;
+
     display: flex;
     align-items: center;
     justify-content: center;
@@ -504,12 +466,14 @@ footer {
     opacity: 0.65;
 }
 
+
 /* =====================================================
    MOBILE
 ===================================================== */
 
 @media (max-width: 900px) {
 
+    /* Skip title image on phones */
     .cover,
     .scroll-indicator {
         display: none;
@@ -543,7 +507,6 @@ footer {
         margin-left: auto;
         margin-right: auto;
     }
-}
 
     .social-section iframe {
         width: 94vw;
@@ -567,6 +530,10 @@ footer {
         margin-top: 22px;
     }
 
+    /*
+       On phones the cards become one column.
+       On desktop they remain [1] [2] [3].
+    */
     .application-grid {
         grid-template-columns: 1fr;
         gap: 12px;
@@ -585,88 +552,71 @@ footer {
 
 </head>
 
+
 <body>
-<!-- =====================================================
-     PASSWORD SCREEN
-===================================================== -->
 
-<!-- <div id="passwordScreen">
 
-    <div class="password-box">
-
-        <h1>Project Youth in Motion</h1>
-
-        <p>
-            Please enter the password to continue.
-        </p>
-
-        <input
-            type="password"
-            id="passwordInput"
-            class="password-input"
-            placeholder="Password"
-            autocomplete="off"
-        >
-
-        <button
-            class="password-button"
-            onclick="checkPassword()"
-        >
-            Enter
-        </button>
-
-        <p id="passwordError" class="password-error">
-            Incorrect password.
-        </p>
-
-    </div>
-
-</div> -->
 <!-- =====================================================
      OPENING
 ===================================================== -->
 
 <section class="opening" id="opening">
 
-<div class="cover" id="cover">
 
-    <img
-        src="images/titleIMG.png"
-        alt="Project Youth in Motion"
-    >
+    <!-- TITLE IMAGE -->
 
-</div>
+    <div class="cover" id="cover">
 
-<div class="scroll-indicator" aria-hidden="true">
-    <div class="scroll-arrow">↓</div>
-</div>
+        <img
+            src="images/titleIMG.png"
+            alt="Project Youth in Motion"
+        >
 
-<div class="hero" id="hero">
+    </div>
 
-    <div class="container">
 
-        <div class="hero-grid">
+    <!-- SCROLL INDICATOR -->
 
-            <div>
+    <div class="scroll-indicator" aria-hidden="true">
+        <div class="scroll-arrow">↓</div>
+    </div>
 
-                <h1>
-                    Project Youth in <i>Motion</i>
-                </h1>
 
-                <p>
-                PYIM is a fiscally sponsored 501(c)(3) under The Hack Foundation that works to empower underserved communities through health education and sports equipment. The idea was thought of by a high school freshman, who hopes to make a difference in children's lives.
-                </p>
-                <a href="./about.html" class="about-link">
-                    About Us -->
-                </a>
+    <!-- TITLE PAGE -->
 
-            </div>
-            <div class="hero-image">
+    <div class="hero" id="hero">
 
-                <img
-                    src="images/logo.png"
-                    alt="Project Youth in Motion Logo"
-                >
+        <div class="container">
+
+            <div class="hero-grid">
+
+
+                <div>
+
+                    <h1>
+                        Project Youth in <i>Motion</i>
+                    </h1>
+
+                    <p>
+                        PYIM is a fiscally sponsored 501(c)(3) under The Hack Foundation that works to empower underserved communities through health education and sports equipment. The idea was thought of by a high school freshman, who hopes to make a difference in children's lives.
+                    </p>
+
+                    <a href="./about.html" class="about-link">
+                        About Us
+                    </a>
+
+                </div>
+
+
+                <div class="hero-image">
+
+                    <img
+                        src="images/logo.png"
+                        alt="Project Youth in Motion Logo"
+                    >
+
+                </div>
+
 
             </div>
 
@@ -674,11 +624,10 @@ footer {
 
     </div>
 
-</div>
-
-
 
 </section>
+
+
 
 <!-- =====================================================
      SOCIAL FEED
@@ -689,16 +638,16 @@ footer {
     class="social-section full-section"
 >
 
-
-<iframe
-    src="https://www.juicer.io/api/feeds/youthinmotion1/iframe"
-    frameborder="0"
-    title="Youth in Motion social media feed"
-    loading="lazy"
-></iframe>
-
+    <iframe
+        src="https://www.juicer.io/api/feeds/youthinmotion1/iframe"
+        frameborder="0"
+        title="Youth in Motion social media feed"
+        loading="lazy"
+    ></iframe>
 
 </section>
+
+
 
 <!-- =====================================================
      MISSION
@@ -709,65 +658,65 @@ footer {
     class="quote full-section"
 >
 
+    <div class="container">
 
-<div class="container">
+        <p>
 
-    <p>
+            <b>Our Mission</b>
 
-        <b>Our Mission</b>
+            At Project Youth In Motion, we believe every child
+            deserves the opportunity to live a healthy, active life.
+            Through health literacy, healthcare education, and sports
+            equity initiatives, we work to empower underserved youth -
+            especially those in immigrant and low-income communities -
+            with the knowledge, resources, and confidence to thrive.
+            Together, we’re breaking barriers to healthcare and sports
+            participation, one child at a time.
 
-        At Project Youth In Motion, we believe every child
-        deserves the opportunity to live a healthy, active life.
-        Through health literacy, healthcare education, and sports
-        equity initiatives, we work to empower underserved youth -
-        especially those in immigrant and low-income communities -
-        with the knowledge, resources, and confidence to thrive.
-        Together, we’re breaking barriers to healthcare and sports
-        participation, one child at a time.
+        </p>
 
-    </p>
-
-</div>
-
+    </div>
 
 </section>
 
+
+
 <!-- =====================================================
      FUTURE EVENTS
-=====================================================
+===================================================== -->
 
 <section
     id="events"
     class="events-section full-section"
 >
 
+    <div class="events-content">
 
-<div class="events-content">
+        <div class="section-eyebrow">
+            What's Ahead
+        </div>
 
-    <div class="section-eyebrow">
-        What's Ahead
+        <h2>
+            Future Events
+        </h2>
+
+        <p>
+            Stay tuned for upcoming Project Youth in Motion
+            events, programs, and opportunities to get involved.
+        </p>
+
+        <div class="no-events">
+            No upcoming events.
+        </div>
+
     </div>
 
-    <h2>
-        Future Events
-    </h2>
-
-    <p>
-        Stay tuned for upcoming Project Youth in Motion
-        events, programs, and opportunities to get involved.
-    </p>
-
-    <div class="no-events">
-        No upcoming events.
-    </div>
-
-</div>
+</section>
 
 
-<!--</section>
 
 <!-- =====================================================
-     APPLICATIONS
+     GET INVOLVED
 ===================================================== -->
 
 <section
@@ -775,135 +724,142 @@ footer {
     class="applications-section"
 >
 
-
-<div class="container">
-
-    <div id="apps" class="applications-header">
-
-        <div>
+    <div class="container">
 
 
+        <!-- HEADER -->
 
-            <h2>
-Get Involved            </h2>
+        <div id="apps" class="applications-header">
+
+            <div>
+
+                <h2>
+                    Get Involved
+                </h2>
+
+            </div>
+
+            <p>
+                There are many ways to become part of
+                Project Youth in Motion. Join us!
+            </p>
 
         </div>
 
-        <p>
-            There are many ways to become part of
-            Project Youth in Motion. Join us!
-        </p>
+
+        <!-- =================================================
+             THREE APPLICATION CARDS
+        ================================================== -->
+
+        <div class="application-grid">
+
+
+            <!-- VOLUNTEER -->
+
+            <a
+                href="#apps"
+                class="application-card"
+            >
+
+                <div>
+                    01
+                </div>
+
+                <div>
+
+                    <h3>
+                        Volunteer
+                    </h3>
+
+                    <p>
+                        Coming soon on the website. Excited to learn more soon? Email info@PYIM.org for more information about current opportunities.
+                    </p>
+
+                </div>
+
+                <div class="application-arrow">
+                </div>
+
+            </a>
+
+
+
+            <!-- START A CHAPTER -->
+
+            <a
+                href="https://docs.google.com/forms/d/e/1FAIpQLSdQCUxAFMl9M_zvScGO81KAhV4r_JVBMOTPBI-JDYD5FhfmPg/viewform"
+                class="application-card"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+
+                <div>
+                    02
+                </div>
+
+                <div>
+
+                    <h3>
+                        Start a Chapter
+                    </h3>
+
+                    <p>
+                        Bring Project Youth in Motion
+                        to your school and build a
+                        community around health and equity.
+                    </p>
+
+                </div>
+
+                <div class="application-arrow">
+                    →
+                </div>
+
+            </a>
+
+
+
+            <!-- EXECUTIVE BOARD -->
+
+            <a
+                href="https://docs.google.com/forms/d/e/1FAIpQLSfI8BsnhHeyDxVivvOTEP5Qn78rkO2kIS5xns9u4tYaDWVhEQ/viewform"
+                class="application-card"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+
+                <div>
+                    03
+                </div>
+
+                <div>
+
+                    <h3>
+                        Executive Board
+                    </h3>
+
+                    <p>
+                        Take on a leadership role and
+                        help shape the future of Project
+                        Youth in Motion.
+                    </p>
+
+                </div>
+
+                <div class="application-arrow">
+                    →
+                </div>
+
+            </a>
+
+
+        </div>
 
     </div>
-
-
-    <div class="application-grid">
-
-        <!-- VOLUNTEER -->
-
-        <a
-            href="#apps"
-            class="application-card"
-            target="_blank"
-            rel="noopener noreferrer"
-        >
-
-            <div>
-
-            </div>
-
-            <div>
-
-                <h3>
-                    Volunteer
-                </h3>
-
-                <p>
-Coming soon on the website. Excited to learn more soon? Email info@PYIM.org for more information about current oppurtunities.
-                </p>
-
-            </div>
-
-            <div class="application-arrow">
-                <!-- → -->
-            </div>
-
-        </a>
-
-
-        <!-- CHAPTER -->
-
-        <a
-            href="https://docs.google.com/forms/d/e/1FAIpQLSdQCUxAFMl9M_zvScGO81KAhV4r_JVBMOTPBI-JDYD5FhfmPg/viewform"
-            class="application-card"
-            target="_blank"
-            rel="noopener noreferrer"
-        >
-
-            <div>
-
-            </div>
-
-            <div>
-
-                <h3>
-                    Start a Chapter
-                </h3>
-
-                <p>
-                    Bring Project Youth in Motion
-                    to your school and build a
-                    community around health and equity.
-                </p>
-
-            </div>
-
-            <div class="application-arrow">
-                →
-            </div>
-
-        </a>
-
-
-        <!-- EXECUTIVE BOARD -->
-
-        <a
-            href="https://docs.google.com/forms/d/e/1FAIpQLSfI8BsnhHeyDxVivvOTEP5Qn78rkO2kIS5xns9u4tYaDWVhEQ/viewform"
-            class="application-card"
-            target="_blank"
-            rel="noopener noreferrer"
-        >
-
-            <div>
-
-            </div>
-
-            <div>
-
-                <h3>
-                    Executive Board
-                </h3>
-
-                <p>
-                    Take on a leadership role and
-                    help shape the future of Project
-                    Youth in Motion.
-                </p>
-
-            </div>
-
-            <div class="application-arrow">
-                →
-            </div>
-
-        </a>
-
-    </div>
-
-</div>
-
 
 </section>
+
+
 
 <!-- =====================================================
      FOOTER
@@ -911,82 +867,51 @@ Coming soon on the website. Excited to learn more soon? Email info@PYIM.org for 
 
 <footer>
 
+    <div class="container">
 
-<div class="container">
+        <div class="footer-socials">
 
-    <div class="footer-socials">
+            <a
+                href="https://www.instagram.com/youthinmotion1/"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                Instagram
+            </a>
 
-        <a
-            href="https://www.instagram.com/youthinmotion1/"
-            target="_blank"
-            rel="noopener noreferrer"
-        >
-            Instagram
-        </a>
+            <a
+                href="https://linktr.ee/youthinmotion8"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                Linktree
+            </a>
 
-        <a
-            href="https://linktr.ee/youthinmotion8"
-            target="_blank"
-            rel="noopener noreferrer"
-        >
-            Linktree
-        </a>
+        </div>
+
+        <div class="footer-copyright">
+            © 2026 Project Youth in Motion
+        </div>
 
     </div>
-
-    <div class="footer-copyright">
-        © 2026 Project Youth in Motion
-    </div>
-
-</div>
-
 
 </footer>
+
+
 
 <!-- =====================================================
      JAVASCRIPT
 ===================================================== -->
 
 <script>
-/* =====================================================
-   PASSWORD PROTECTION
-===================================================== */
-
-const passwordScreen = document.getElementById("passwordScreen");
-const passwordInput = document.getElementById("passwordInput");
-const passwordError = document.getElementById("passwordError");
-
-function checkPassword() {
-
-    if (passwordInput.value === "sarika") {
-
-        passwordScreen.style.display = "none";
-
-    } else {
-
-        passwordError.style.display = "block";
-        passwordInput.value = "";
-        passwordInput.focus();
-
-    }
-}
-
-passwordInput.addEventListener("keydown", function(event) {
-
-    if (event.key === "Enter") {
-        checkPassword();
-    }
-
-});
 
 /* =====================================================
    OPENING TITLE IMAGE
 
    Desktop:
-   The title image is the opening screen. The green strip
-   and bouncing arrow disappear once the visitor scrolls.
-   Normal scrolling then reveals the title page below,
-   including the logo, name, description, and About Us link.
+   The title image is the opening screen.
+   The green strip and bouncing arrow disappear
+   once the visitor scrolls.
 
    Mobile:
    The title image and arrow are skipped entirely.
@@ -994,26 +919,52 @@ passwordInput.addEventListener("keydown", function(event) {
 
 const scrollIndicator = document.querySelector(".scroll-indicator");
 
+
 function updateScrollIndicator() {
+
+    if (!scrollIndicator) {
+        return;
+    }
+
     if (window.scrollY > 5) {
         scrollIndicator.style.opacity = "0";
     } else {
         scrollIndicator.style.opacity = "1";
     }
+
 }
+
 
 window.addEventListener("scroll", updateScrollIndicator, {
     passive: true
 });
 
+
 updateScrollIndicator();
 
+
+/* =====================================================
+   MOBILE TITLE IMAGE
+
+   On screens 900px and below, skip the title image.
+===================================================== */
+
 if (window.matchMedia("(max-width: 900px)").matches) {
-    document.getElementById("cover").style.display = "none";
-    scrollIndicator.style.display = "none";
+
+    const cover = document.getElementById("cover");
+
+    if (cover) {
+        cover.style.display = "none";
+    }
+
+    if (scrollIndicator) {
+        scrollIndicator.style.display = "none";
+    }
+
 }
 
 </script>
+
 
 </body>
 
