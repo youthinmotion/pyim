@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -61,19 +62,19 @@ header{
 /* PAGE TITLE */
 
 .page-title{
-    border-bottom:1px solid var(--line);
     padding:56px 0;
 }
 
 .page-title h1{
     font-family:"Libre Baskerville",serif;
     font-size:clamp(2.2rem,4.4vw,3.2rem);
+    text-align:center;
 }
 
 /* PEOPLE GRID */
 
 .people-section{
-    padding:90px 0 110px;
+    padding:30px 0 110px;
 }
 
 .people-grid{
@@ -85,7 +86,6 @@ header{
 }
 
 .person-card{
-    text-decoration:none;
     color:var(--text);
     display:block;
 }
@@ -121,10 +121,6 @@ header{
     font-size:1.45rem;
 }
 
-.person-card:hover .person-name{
-    text-decoration:underline;
-}
-
 /* FOOTER */
 
 footer{
@@ -156,7 +152,7 @@ footer{
     }
 
     .people-section{
-        padding:55px 0 80px;
+        padding:10px 0 80px;
     }
 
     .people-grid{
@@ -196,7 +192,7 @@ footer{
 
             <!-- SARIKA -->
 
-            <a href="sarika.html" class="person-card fade">
+            <div class="person-card fade">
 
                 <div class="person-image">
                     <img
@@ -209,12 +205,12 @@ footer{
                     Sarika Tahirah
                 </div>
 
-            </a>
+            </div>
 
 
             <!-- ADAM -->
 
-            <a href="adam.html" class="person-card fade">
+            <div class="person-card fade">
 
                 <div class="person-image">
                     <img
@@ -227,7 +223,79 @@ footer{
                     Adam Bellows
                 </div>
 
-            </a>
+            </div>
+
+
+            <!-- PERSON 3 -->
+
+            <div class="person-card fade">
+
+                <div class="person-image">
+                    <img
+                        src="images/person3.jpeg"
+                        alt="Person 3"
+                    >
+                </div>
+
+                <div class="person-name">
+                    Person 3
+                </div>
+
+            </div>
+
+
+            <!-- PERSON 4 -->
+
+            <div class="person-card fade">
+
+                <div class="person-image">
+                    <img
+                        src="images/person4.jpeg"
+                        alt="Person 4"
+                    >
+                </div>
+
+                <div class="person-name">
+                    Person 4
+                </div>
+
+            </div>
+
+
+            <!-- PERSON 5 -->
+
+            <div class="person-card fade">
+
+                <div class="person-image">
+                    <img
+                        src="images/person5.jpeg"
+                        alt="Person 5"
+                    >
+                </div>
+
+                <div class="person-name">
+                    Person 5
+                </div>
+
+            </div>
+
+
+            <!-- PERSON 6 -->
+
+            <div class="person-card fade">
+
+                <div class="person-image">
+                    <img
+                        src="images/person6.jpeg"
+                        alt="Person 6"
+                    >
+                </div>
+
+                <div class="person-name">
+                    Person 6
+                </div>
+
+            </div>
 
         </div>
 
@@ -266,3 +334,4 @@ document.querySelectorAll(".fade").forEach((el) => {
 
 </body>
 </html>
+```
