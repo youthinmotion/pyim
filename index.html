@@ -76,83 +76,6 @@ img {
 
 
 /* =====================================================
-   TITLE IMAGE
-===================================================== */
-
-.cover {
-    position: relative;
-    width: 100%;
-    height: calc(100vh - 76px);
-    height: calc(100svh - 76px);
-    z-index: 2;
-    pointer-events: none;
-    user-select: none;
-    overflow: hidden;
-}
-
-/* Both title images occupy the exact same space */
-
-.cover img {
-    position: absolute;
-    inset: 0;
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
-}
-
-/* First image starts visible */
-
-.cover img.active {
-    opacity: 1;
-}
-
-
-/* =====================================================
-   GREEN SCROLL STRIP
-===================================================== */
-
-.scroll-indicator {
-    position: absolute;
-    top: calc(100vh - 76px);
-    top: calc(100svh - 76px);
-    left: 0;
-    width: 100%;
-    height: 76px;
-    z-index: 3;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    background: var(--bg);
-    color: var(--text);
-
-    pointer-events: none;
-    transition: opacity 0.2s ease;
-}
-
-.scroll-arrow {
-    font-size: 2rem;
-    line-height: 1;
-    animation: scrollBounce 1.4s ease-in-out infinite;
-}
-
-@keyframes scrollBounce {
-    0%, 100% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(10px);
-    }
-}
-
-
-/* =====================================================
    TITLE PAGE
 ===================================================== */
 
@@ -201,17 +124,75 @@ img {
 
 
 /* =====================================================
+   PHOTO SECTION
+===================================================== */
+
+.photo-section {
+    width: 100%;
+    padding: 0 0 90px;
+}
+
+.photo-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+    width: 100%;
+}
+
+.photo-item {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    background: var(--card);
+}
+
+.photo-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+/* =====================================================
+   MOBILE PHOTO SLIDESHOW
+===================================================== */
+
+.mobile-photo-slideshow {
+    display: none;
+}
+
+.mobile-photo-slideshow img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.mobile-photo-slideshow img.active {
+    opacity: 1;
+}
+
+.mobile-photo-frame {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+}
+
+
+/* =====================================================
    REDUCED MOTION
 ===================================================== */
 
 @media (prefers-reduced-motion: reduce) {
-    .scroll-arrow {
-        animation: none;
-    }
 
-    .cover img {
+    .mobile-photo-slideshow img {
         transition: none;
     }
+
 }
 
 
@@ -308,10 +289,7 @@ img {
 
 .application-grid {
     display: grid;
-
-    /* Three cards in one row */
     grid-template-columns: repeat(3, minmax(0, 1fr));
-
     gap: 18px;
     width: 100%;
 }
@@ -319,7 +297,6 @@ img {
 .application-card {
     min-height: 310px;
 
-    /* The boxes */
     border: 1px solid var(--line);
 
     background: var(--card);
@@ -444,12 +421,6 @@ footer {
 
 @media (max-width: 900px) {
 
-    /* Skip title image on phones */
-    .cover,
-    .scroll-indicator {
-        display: none;
-    }
-
     .hero {
         min-height: 100vh;
         min-height: 100svh;
@@ -479,6 +450,34 @@ footer {
         margin-right: auto;
     }
 
+
+    /* ---------------------------------------------
+       MOBILE PHOTO AREA
+    --------------------------------------------- */
+
+    .photo-section {
+        padding: 0 0 60px;
+    }
+
+    .photo-grid {
+        display: none;
+    }
+
+    .mobile-photo-slideshow {
+        display: block;
+        width: 100%;
+    }
+
+    .mobile-photo-frame {
+        width: 92%;
+        margin: 0 auto;
+    }
+
+
+    /* ---------------------------------------------
+       SOCIAL
+    --------------------------------------------- */
+
     .social-section iframe {
         width: 94vw;
         height: 85svh;
@@ -487,6 +486,11 @@ footer {
     .quote p {
         font-size: clamp(1.65rem, 7vw, 2.2rem);
     }
+
+
+    /* ---------------------------------------------
+       APPLICATIONS
+    --------------------------------------------- */
 
     .applications-section {
         padding: 70px 0;
@@ -501,10 +505,6 @@ footer {
         margin-top: 22px;
     }
 
-    /*
-       On phones the cards become one column.
-       On desktop they remain [1] [2] [3].
-    */
     .application-grid {
         grid-template-columns: 1fr;
         gap: 12px;
@@ -517,6 +517,7 @@ footer {
     .events-content h2 {
         font-size: clamp(2.5rem, 11vw, 4rem);
     }
+
 }
 
 </style>
@@ -534,43 +535,9 @@ footer {
 <section class="opening" id="opening">
 
 
-    <!-- TITLE IMAGE -->
-
-    <div class="cover" id="cover">
-
-        <img
-            src="images/titleIMG.png"
-            alt="Project Youth in Motion"
-            class="active"
-        >
-
-        <img
-            src="images/Screenshot 2026-08-13 at 2.00.12 PM.jpeg"
-            alt=""
-            aria-hidden="true"
-        >
-        <img
-            src="images/IMG_4611.heic"
-            alt=""
-            aria-hidden="true"
-        >
-        <img
-            src="images/supplies.heic"
-            alt=""
-            aria-hidden="true"
-        >
-
-    </div>
-
-
-    <!-- SCROLL INDICATOR -->
-
-    <div class="scroll-indicator" aria-hidden="true">
-        <div class="scroll-arrow">↓</div>
-    </div>
-
-
-    <!-- TITLE PAGE -->
+    <!-- =================================================
+         TITLE PAGE
+    ================================================== -->
 
     <div class="hero" id="hero">
 
@@ -611,6 +578,90 @@ footer {
         </div>
 
     </div>
+
+
+    <!-- =================================================
+         PHOTO SECTION
+         
+         DESKTOP:
+         Three images appear side-by-side.
+
+         MOBILE:
+         One image appears and automatically rotates.
+    ================================================== -->
+
+    <section class="photo-section">
+
+        <div class="container">
+
+
+            <!-- DESKTOP 1 x 3 GRID -->
+
+            <div class="photo-grid">
+
+                <div class="photo-item">
+
+                    <img
+                        src="images/titleIMG.png"
+                        alt="Project Youth in Motion"
+                    >
+
+                </div>
+
+
+                <div class="photo-item">
+
+                    <img
+                        src="images/Screenshot 2026-08-13 at 2.00.12 PM.jpeg"
+                        alt=""
+                    >
+
+                </div>
+
+
+                <div class="photo-item">
+
+                    <img
+                        src="images/IMG_4611.heic"
+                        alt=""
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- MOBILE SINGLE ROTATING SLOT -->
+
+            <div class="mobile-photo-slideshow">
+
+                <div class="mobile-photo-frame">
+
+                    <img
+                        src="images/titleIMG.png"
+                        alt="Project Youth in Motion"
+                        class="active"
+                    >
+
+                    <img
+                        src="images/Screenshot 2026-08-13 at 2.00.12 PM.jpeg"
+                        alt=""
+                        aria-hidden="true"
+                    >
+
+                    <img
+                        src="images/IMG_4611.heic"
+                        alt=""
+                        aria-hidden="true"
+                    >
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
 
 
 </section>
@@ -860,87 +911,51 @@ footer {
 <script>
 
 /* =====================================================
-   TITLE IMAGE SLIDESHOW
-
-   The title images automatically crossfade.
-   Each image stays visible for 4 seconds.
-   The transition itself takes 1 second.
-
-   There are no controls or navigation for the user.
-===================================================== */
-
-const titleImages = document.querySelectorAll(".cover img");
-
-let currentTitleImage = 0;
-
-setInterval(() => {
-
-    titleImages[currentTitleImage].classList.remove("active");
-
-    currentTitleImage =
-        (currentTitleImage + 1) % titleImages.length;
-
-    titleImages[currentTitleImage].classList.add("active");
-
-}, 4000);
-
-
-/* =====================================================
-   OPENING TITLE IMAGE
+   MOBILE PHOTO SLIDESHOW
 
    Desktop:
-   The title image is the opening screen.
-   The green strip and bouncing arrow disappear
-   once the visitor scrolls.
+   All three images remain visible in a 1 x 3 grid.
 
    Mobile:
-   The title image and arrow are skipped entirely.
+   Only one image is visible at a time.
+   It automatically crossfades every 4 seconds.
 ===================================================== */
 
-const scrollIndicator = document.querySelector(".scroll-indicator");
+const mobilePhotoImages =
+    document.querySelectorAll(".mobile-photo-slideshow img");
+
+let currentMobilePhoto = 0;
 
 
-function updateScrollIndicator() {
+/*
+   Only run the slideshow on mobile-sized screens.
+*/
 
-    if (!scrollIndicator) {
+function startMobilePhotoSlideshow() {
+
+    if (mobilePhotoImages.length < 2) {
         return;
     }
 
-    if (window.scrollY > 5) {
-        scrollIndicator.style.opacity = "0";
-    } else {
-        scrollIndicator.style.opacity = "1";
-    }
+    setInterval(() => {
+
+        mobilePhotoImages[currentMobilePhoto]
+            .classList.remove("active");
+
+        currentMobilePhoto =
+            (currentMobilePhoto + 1) %
+            mobilePhotoImages.length;
+
+        mobilePhotoImages[currentMobilePhoto]
+            .classList.add("active");
+
+    }, 4000);
 
 }
 
 
-window.addEventListener("scroll", updateScrollIndicator, {
-    passive: true
-});
-
-
-updateScrollIndicator();
-
-
-/* =====================================================
-   MOBILE TITLE IMAGE
-
-   On screens 900px and below, skip the title image.
-===================================================== */
-
 if (window.matchMedia("(max-width: 900px)").matches) {
-
-    const cover = document.getElementById("cover");
-
-    if (cover) {
-        cover.style.display = "none";
-    }
-
-    if (scrollIndicator) {
-        scrollIndicator.style.display = "none";
-    }
-
+    startMobilePhotoSlideshow();
 }
 
 </script>
