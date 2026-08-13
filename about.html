@@ -35,11 +35,6 @@ body{
     line-height:1.7;
 }
 
-img{
-    display:block;
-    width:100%;
-}
-
 .container{
     width:min(1200px,92%);
     margin:auto;
@@ -63,57 +58,11 @@ header{
     color:var(--text);
 }
 
-.nav-links{
-    display:flex;
-    align-items:center;
-    gap:24px;
-}
-
-.nav-links a.plain-link{
-    color:var(--muted);
-    font-size:.95rem;
-}
-
-.nav-links a.plain-link:hover{
-    color:var(--text);
-}
-
-.button{
-    display:inline-block;
-    text-decoration:none;
-    color:var(--text);
-    border:1px solid var(--text);
-    padding:14px 26px;
-    transition:.25s;
-}
-
-.button:hover{
-    background:var(--text);
-    color:var(--bg);
-}
-
-.plain-link{
-    color:inherit;
-    text-decoration:none;
-}
-
-.plain-link:hover{
-    text-decoration:underline;
-}
-
-/* ---- page title bar ---- */
+/* PAGE TITLE */
 
 .page-title{
     border-bottom:1px solid var(--line);
     padding:56px 0;
-}
-
-.eyebrow{
-    text-transform:uppercase;
-    letter-spacing:.12em;
-    font-size:.75rem;
-    color:var(--muted);
-    margin-bottom:16px;
 }
 
 .page-title h1{
@@ -121,49 +70,62 @@ header{
     font-size:clamp(2.2rem,4.4vw,3.2rem);
 }
 
-/* ---- about section ---- */
+/* PEOPLE GRID */
 
-.section{
-    padding:100px 0;
+.people-section{
+    padding:90px 0 110px;
 }
 
-.about-grid{
+.people-grid{
     display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:90px;
-    align-items:center;
+    grid-template-columns:repeat(2, 1fr);
+    gap:60px;
+    max-width:850px;
+    margin:0 auto;
 }
 
-.about-image{
-    aspect-ratio:1/1;
+.person-card{
+    text-decoration:none;
+    color:var(--text);
+    display:block;
+}
+
+.person-image{
+    aspect-ratio:1 / 1;
     overflow:hidden;
+    margin-bottom:22px;
+    background:#dce5c5;
 }
 
-.about-image img{
+.person-image img{
     width:100%;
     height:100%;
     object-fit:cover;
+    transition:transform .45s ease;
 }
 
-.about-copy .eyebrow{
-    margin-bottom:20px;
+.person-card:hover .person-image img{
+    transform:scale(1.04);
 }
 
-.about-copy h2{
-    font-family:"Libre Baskerville",serif;
-    font-size:clamp(2rem,3.6vw,2.8rem);
-    margin-bottom:24px;
-}
-
-.about-copy p{
+.person-role{
+    text-transform:uppercase;
+    letter-spacing:.12em;
+    font-size:.72rem;
     color:var(--muted);
-    max-width:520px;
-    margin-bottom:20px;
+    margin-bottom:7px;
 }
 
-.about-copy p:last-of-type{
-    margin-bottom:32px;
+.person-name{
+    font-family:"Libre Baskerville",serif;
+    font-size:1.45rem;
 }
+
+.person-card:hover .person-name{
+    text-decoration:underline;
+}
+
+/* FOOTER */
 
 footer{
     border-top:1px solid var(--line);
@@ -172,24 +134,11 @@ footer{
     text-align:center;
 }
 
-.footer-links{
-    margin-top:10px;
-    font-size:.9rem;
-}
-
-.footer-links a{
-    color:var(--muted);
-    text-decoration:none;
-    margin:0 8px;
-}
-
-.footer-links a:hover{
-    text-decoration:underline;
-}
+/* FADE */
 
 .fade{
     opacity:0;
-    transform:translateY(30px);
+    transform:translateY(25px);
     transition:.8s ease;
 }
 
@@ -198,33 +147,38 @@ footer{
     transform:none;
 }
 
-@media(max-width:900px){
+/* MOBILE */
 
-    .nav-links a.plain-link{
-        display:none;
-    }
-
-    .about-grid{
-        grid-template-columns:1fr;
-        gap:36px;
-    }
-
-    .section{
-        padding:70px 0;
-    }
+@media(max-width:700px){
 
     .page-title{
         padding:44px 0;
     }
+
+    .people-section{
+        padding:55px 0 80px;
+    }
+
+    .people-grid{
+        grid-template-columns:1fr;
+        gap:50px;
+        max-width:500px;
+    }
+
+    .person-name{
+        font-size:1.3rem;
+    }
 }
 </style>
 </head>
+
 <body>
 
 <header>
     <div class="container nav">
-        <a href="index.html" class="brand">Project Youth in Motion</a>
-
+        <a href="index.html" class="brand">
+            Project Youth in Motion
+        </a>
     </div>
 </header>
 
@@ -234,66 +188,88 @@ footer{
     </div>
 </section>
 
-<section class="section">
-    <div class="container about-grid">
+<section class="people-section">
 
-        <div class="about-image fade">
-            <img src="images/sarikaIMAGE.jpeg" alt="Name">
+    <div class="container">
+
+        <div class="people-grid">
+
+            <!-- SARIKA -->
+
+            <a href="sarika.html" class="person-card fade">
+
+                <div class="person-image">
+                    <img
+                        src="images/sarikaIMAGE.jpeg"
+                        alt="Sarika Tahirah"
+                    >
+                </div>
+
+                <div class="person-role">
+                    Founder
+                </div>
+
+                <div class="person-name">
+                    Sarika Tahirah
+                </div>
+
+            </a>
+
+
+            <!-- ADAM -->
+
+            <a href="adam.html" class="person-card fade">
+
+                <div class="person-image">
+                    <img
+                        src="images/adam.jpeg"
+                        alt="Adam Bellows"
+                    >
+                </div>
+
+                <div class="person-role">
+                    Website Designer
+                </div>
+
+                <div class="person-name">
+                    Adam Bellows
+                </div>
+
+            </a>
+
         </div>
 
-        <div class="about-copy fade">
-            <h3>Founder</h3>
-
-            <h2>Sarika Tahirah</h2>
-            <p>
-               Bio paragraph one goes here.
-            </p>
-            <p>
-            Bio paragraph two goes here if needed!
-
-            </p>
-            <a href="mailto:hello@torahmorah.com" class="button">Get in touch</a>
-        </div>
-
-        <div class="about-image fade">
-            <img src="images/adam.jpeg" alt="Name">
-        </div>
-
-        <div class="about-copy fade">
-            <h3>Website Designer</h3>
-
-            <h2>Adam Bellows</h2>
-            <p>
-               Bio paragraph one goes here.
-            </p>
-            <p>
-            Bio paragraph two goes here if needed!
-
-            </p>
-            <a href="mailto:hello@torahmorah.com" class="button">Get in touch</a>
-        </div>
     </div>
+
 </section>
 
 <footer>
     <div class="container">
         © 2026 Project Youth in Motion
-
     </div>
 </footer>
 
+
 <script>
+
 const observer = new IntersectionObserver((entries) => {
+
     entries.forEach((entry) => {
-        if (entry.isIntersecting) {
+
+        if(entry.isIntersecting){
             entry.target.classList.add("visible");
         }
+
     });
-}, { threshold: 0.15 });
+
+}, {
+    threshold:0.15
+});
 
 document.querySelectorAll(".fade").forEach((el) => {
     observer.observe(el);
 });
+
 </script>
 
 </body>
